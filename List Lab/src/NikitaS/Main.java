@@ -26,16 +26,23 @@ public class Main {
 		//operation. Complete the action
 
 		//Delete the first, if any, Student with the last name of "Smith"
-		int i = 0;
-		for (Student student: studentLinkedList){
+		/**
+		 * Removing depends on how far along in the list "Smith" is.
+		 * If Smith is early in the list it'd be faster to remove via linkedlist, otherwise Arraylist.
+		 * That's because it's faster to actually do the removal with a linkedlist, but the actual finding in the list is faster with an arraylist.
+		 */
+		for (int i = 0; i<studentLinkedList.getSize();i++){
+			Student student = studentLinkedList.get(i);
 			if (student.getLastName().equals("Smith")){
 				studentLinkedList.remove(i);
+				break;
 			}
-			i++;
+
 		}
 		//Change the name of the 3rd entry to "Joe Montana"
 		studentArrayList.get(2).setFirstName("Joe");
 		studentArrayList.get(2).setLastName("Montana");
+		System.out.println(studentArrayList.get(2).getFirstName()+" "+ studentArrayList.get(2).getLastName());
 
 		//Remove the 10th element
 		System.out.println("10th student:" +studentLinkedList.get(9).getFirstName());
@@ -64,7 +71,6 @@ public class Main {
 			int firstNameIndex = random.nextInt(firstNames.length -1);
 			int lastNameIndex = random.nextInt(lastNames.length -1);
 			double gpa = 3.5 * random.nextDouble() + 0.5;
-			System.out.println("Added"+firstNames[firstNameIndex]);
 			outList.add(new Student(firstNames[firstNameIndex], lastNames[lastNameIndex], gpa));
 		}
 	}
